@@ -79,6 +79,6 @@ $rootScope.chapterdata = khan.chaptercontroller_data;
 dashboard.controller('examcontroller', function($scope,khan,$rootScope,$http){
 console.log("in exam controller");
 $http.get('/getuserexams/dashboard/').then(function(res2){
-    
+console.log(" in exam controller " + JSON.stringify(res2));    
 });    
 });
