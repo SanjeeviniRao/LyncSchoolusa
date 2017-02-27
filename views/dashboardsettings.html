@@ -42,10 +42,13 @@
                     <div class="ios">
                         <div class="row">
                              <h4 class="marginbottom50"> Change Password</h4>
-                                <input type="text" class="width100 settingsinput inputStyling " placeholder="old password">
-                                <input type="text" class="width100 settingsinput inputStyling" placeholder="new password">
-                                <input type="text" class="width100 settingsinput inputStyling" placeholder="Re-Enter password">
-                                <button class="btn btn-primary">SUBMIT</button>
+                            <form id="settings" name="settings"  ng-controller="settingscontroller">
+                                <input type="text" ng-model="old" class="width100 settingsinput inputStyling " placeholder="old password">
+                                <input type="text" ng-model="newp" class="width100 settingsinput inputStyling" placeholder="new password">
+                                <input type="text" ng-model="renew" class="width100 settingsinput inputStyling" placeholder="Re-Enter password">
+<!--                                <button class="btn btn-primary">SUBMIT</button>-->
+                                <input class="btn btn-primary" type="submit" id="submit" ng-click="execute()"  name="submit"/>
+                                </form>
                         </div>
                     </div>
               </div>

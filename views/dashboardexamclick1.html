@@ -40,7 +40,21 @@
         <div class="row">
                <div class="col-md-12 padding50">
                              <div class="ios">
-                                 <div class="row ">
+                                 
+                                 <div class="row " ng-repeat="exam in data">
+                                    <div class="col-md-8">
+                                       <h5>{{exam.chapterheading}}</h5>
+                                       <h6>{{exam.chaptersubheading}}</h6>
+                                       <p class="marginleft30">{{exam.chapterdescription}}</p>
+                                    </div>
+                                 <div class="col-md-4">
+                                  <a href="#!/dashboardtest/{{exam.examid}}"><button class="btn btn-primary pull-right margintop20">Start</button></a>
+                                 </div>
+
+                                </div>
+                                 
+                                 
+                            <!--     <div class="row ">
                                     <div class="col-md-8">
                                        <h5>BASICS OF C</h5>
                                        <h6>Introduction to Objective-C</h6>
@@ -73,7 +87,7 @@
                                  <div class="col-md-4">
                                  <a href="#!/dashboardtest"><button class="btn btn-primary pull-right margintop20">Start</button></a>
                                  </div>
-                               </div>
+                               </div>-->
                                <hr>
                                  
                              </div>

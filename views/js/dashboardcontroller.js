@@ -60,7 +60,8 @@ dashboard.config(function($routeProvider) {
         controller: 'chapterviewmorecontroller'
 	})
       .when("/dashboardsettings",{
-		templateUrl:"dashboardsettings.html"
+		templateUrl:"dashboardsettings.html",
+        controller : 'settingscontroller'
 	})
       .when("/dashboardexamclick1",{
 		templateUrl:"dashboardexamclick1.html",
@@ -90,6 +91,10 @@ dashboard.config(function($routeProvider) {
     .when("/dashboardcourseclick3/vid/:videocode",{
         templateUrl:"dashboardcourseclick3.html",
         controller:'videocontroller'
+    })
+     .when("/dashboardtest/:examcode",{
+        templateUrl:"dashboardtest.html",
+        controller:'testcontroller'
     })
     
 });

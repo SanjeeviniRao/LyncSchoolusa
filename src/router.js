@@ -17,6 +17,8 @@ let userCourse = require('./controllers/usercourse');
 let userchapter = require('./controllers/userchapter');
 let uservideos = require('./controllers/uservideo');
 let userExams = require('./controllers/userexams');
+let userchangep =  require('./controllers/userchangep');
+let userChapterExam =  require('./controllers/userChapterExam');
 //let passportVariable=request.session.passport.user;
 
 class Router {
@@ -30,6 +32,10 @@ class Router {
 
   init(){
       
+     this.router.post('/settingschangepassword', userchangep.changeUserPassword);
+    
+      this.router.post('/examcontent/test', userChapterExam.getChapterTests);
+    
       this.router.get('/getuserexams/dashboard',userExams.getUserExams);
       
       this.router.post('/videocontent/dashboard', uservideos.getUserVideos);

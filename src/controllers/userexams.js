@@ -25,8 +25,65 @@ console.log("error"+ error);
 }
 }).then(function(){
    // console.log( " om then fucntion");
-//let oid = new require('mongodb').ObjectID(courseid);    
+//let oid = new require('mongodb').ObjectID(courseid);   
 //chapterUser.findOne({_id:oid},())
+    let idObjectArray=[];
+    let resultArray=[];
+    
+   for( var k=0;k<chapterids.length;k++){
+    let rawid = chapterids[k];
+       console.log(" In for loop" + rawid);
+    let newid = rawid.replace('"',"").replace('"',"");
+    let oid = new require('mongodb').ObjectID(newid); 
+    let queryId={"_id":oid};
+       idObjectArray.push(queryId);  
+   }
+    console.log(idObjectArray);
+    
+    
+    
+    chapterUser.aggregate([
+  { "$match": { $or: idObjectArray }},
+  { "$sort": { "chapterid": 1 } },
+  { "$limit": 20 },
+  { "$lookup": {
+    "localField":"_id",
+    "from": "exams",
+    "foreignField": "chapterid",
+    "as": "exam"
+  } },
+  { "$unwind": "$exam" },
+  { "$project": {
+    "chapterheading": 1,
+    "chaptersubheading": 1,
+    "chapterdescription":1,
+    "exam._id": 1
+      } }
+]).exec(function(error,result){
+        if(result)
+        {
+            console.log("Aggregate result :"+result);
+        for(let i=0; i<result.length;i++){
+            let dataDocument={};
+           console.log("data" +JSON.stringify(result[i])); 
+            dataDocument.examid=result[i].exam._id;
+            dataDocument.chapterheading=result[i].chapterheading;
+            dataDocument.chaptersubheading=result[i].chaptersubheading;
+            dataDocument.chapterdescription=result[i].chapterdescription;
+            resultArray.push(dataDocument);
+           
+        }
+          console.log("dta1"+ resultArray);
+            response.send(resultArray);
+        }
+        else
+            console.log(error);
+    });
+    
+    
+    
+    
+   /* 
     var i=0;
   //  console.log(" length " + chapterids.length);
 for( var k=0;k<chapterids.length;k++){
@@ -85,7 +142,7 @@ for( var k=0;k<chapterids.length;k++){
     
 } // end of for
     
-    
+ */   
  // resolve(examelements);
     
     
