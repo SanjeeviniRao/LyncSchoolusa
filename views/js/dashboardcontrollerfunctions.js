@@ -101,8 +101,10 @@ dashboard.controller('testcontroller',function($scope,khan,$rootScope,$http,$rou
 //console.log("helo");
 //console.log("in video controller "+ $routeParams.videocode);
 $scope.testtoken = $routeParams.testcode;
-//$scope.courseid = khan.courseid;    
-var jsondata ={var1:$scope.testtoken};    
+//$scope.courseid = khan.courseid;  
+var jsondata ={var1:$scope.testtoken};  
+        //console.log("world" + jsondata);
+
 $http.post('/examcontent/test',jsondata).then(function(data) {
 $rootScope.videodata = data.data;  
 console.log("hellohello" + $rootScope.videodata);    

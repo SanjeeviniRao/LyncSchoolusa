@@ -16,7 +16,7 @@ class UserChapterExams{
         var userid= request.session.passport.user._id;
         var exam_token = JSON.stringify(request.body.var1);
         
-        
+        console.log(" In use chapter exam"  + exam_token);
         userExams.findOne({_id:exam_token},(err,object)=>{
             if(object){
                elements.push(object.test); 
